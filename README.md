@@ -16,6 +16,11 @@ ciis-expositores/
 - Se creó la carpeta raíz del proyecto `ciis-expositores`
 - Se creó este archivo README.md con la documentación inicial
 
+Comandos utilizados:
+```bash
+mkdir ciis-expositores
+```
+
 ### [2024-03-19] Implementación del Backend
 - Se creó la carpeta `backend` y se inicializó el proyecto Node.js
 - Se instalaron las dependencias necesarias:
@@ -26,6 +31,16 @@ ciis-expositores/
   - @types/express
   - @types/cors
   - typescript
+
+Comandos utilizados:
+```bash
+cd ciis-expositores
+mkdir backend
+cd backend
+npm init -y
+npm install express cors ts-node-dev @types/node @types/express @types/cors typescript
+mkdir src
+```
 
 #### Archivos creados y modificados:
 
@@ -96,6 +111,14 @@ export interface Expositor {
 ### [2024-03-19] Implementación del Frontend
 - Se creó el proyecto frontend usando Vite con la plantilla React + TypeScript
 - Se eliminó el código de ejemplo generado por Vite
+
+Comandos utilizados:
+```bash
+cd ..
+npm create vite@latest frontend -- --template react-ts
+cd frontend
+npm install
+```
 
 #### Archivos creados y modificados:
 
@@ -188,4 +211,34 @@ export interface Expositor {
       object-fit: cover;
     }
     ```
-  - Espaciado y tipografía consistentes 
+  - Espaciado y tipografía consistentes
+
+### [2024-03-19] Configuración de Git y Push al Repositorio
+- Se inicializó el repositorio Git
+- Se creó el archivo .gitignore
+- Se realizó el commit inicial
+- Se configuró el repositorio remoto
+- Se subió el código a GitHub
+
+Comandos utilizados:
+```bash
+# Inicializar repositorio Git
+git init
+
+# Crear y configurar .gitignore
+# (contenido del archivo .gitignore)
+
+# Agregar archivos y hacer commit inicial
+git add .
+git commit -m "Commit inicial: Implementación de la aplicación CIIS Expositores"
+
+# Configurar repositorio remoto y hacer push
+git remote add origin https://github.com/CarlosMinauro/PWciis.git
+git branch -M main
+git push -u origin main
+
+# Actualizar README con cambios específicos
+git add README.md
+git commit -m "docs: Actualización detallada del README con cambios específicos"
+git push origin main
+``` 
