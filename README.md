@@ -68,11 +68,30 @@ export interface Expositor {
 - Se configuró CORS y middleware para JSON
 
 4. `backend/package.json`:
-- Se modificó para incluir los scripts:
-  - "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
-  - "build": "tsc"
-  - "start": "node dist/index.js"
-- Se actualizaron las dependencias y sus versiones
+- Se modificó el archivo generado por `npm init -y`:
+  - Se eliminó el script de test por defecto
+  - Se agregaron los scripts:
+    ```json
+    "scripts": {
+      "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+      "build": "tsc",
+      "start": "node dist/index.js"
+    }
+    ```
+  - Se actualizaron las dependencias y sus versiones específicas:
+    ```json
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2"
+    },
+    "devDependencies": {
+      "@types/cors": "^2.8.17",
+      "@types/express": "^4.17.21",
+      "@types/node": "^20.11.19",
+      "ts-node-dev": "^2.0.0",
+      "typescript": "^5.3.3"
+    }
+    ```
 
 ### [2024-03-19] Implementación del Frontend
 - Se creó el proyecto frontend usando Vite con la plantilla React + TypeScript
@@ -92,22 +111,81 @@ export interface Expositor {
 ```
 
 2. `frontend/src/App.tsx`:
-- Se eliminó todo el código de ejemplo de Vite
+- Se eliminó todo el código de ejemplo de Vite, incluyendo:
+  - Los imports de los logos (reactLogo y viteLogo)
+  - El contador de ejemplo
+  - Los enlaces a la documentación
+  - Los estilos por defecto
 - Se implementó el componente principal con:
-  - Estado para la lista de expositores
-  - Estado para el formulario de nuevo expositor
-  - Estado para el expositor en edición
+  - Estado para la lista de expositores:
+    ```typescript
+    const [expositores, setExpositores] = useState<Expositor[]>([])
+    ```
+  - Estado para el formulario de nuevo expositor:
+    ```typescript
+    const [nuevoExpositor, setNuevoExpositor] = useState<Expositor>({
+      id: '',
+      nombre: '',
+      afiliacion: '',
+      url: ''
+    })
+    ```
+  - Estado para el expositor en edición:
+    ```typescript
+    const [expositorEditando, setExpositorEditando] = useState<Expositor | null>(null)
+    ```
   - Función fetchExpositores para obtener datos del backend
   - Función handleSubmitNuevo para agregar expositores
   - Función handleSubmitEditar para actualizar expositores
   - JSX con formularios y lista de expositores
 
 3. `frontend/src/App.css`:
-- Se eliminaron los estilos por defecto de Vite
+- Se eliminaron todos los estilos por defecto de Vite, incluyendo:
+  - Los estilos de los logos
+  - Los estilos del contador
+  - Los estilos de la documentación
 - Se agregaron nuevos estilos para:
-  - Layout responsive con grid
-  - Formularios con diseño moderno
-  - Tarjetas de expositores con sombras y bordes redondeados
-  - Botones con efectos hover
-  - Imágenes con object-fit para mantener proporciones
+  - Layout responsive con grid:
+    ```css
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    ```
+  - Formularios con diseño moderno:
+    ```css
+    .form-section {
+      background: #f5f5f5;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    ```
+  - Tarjetas de expositores con sombras y bordes redondeados:
+    ```css
+    .expositor-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    ```
+  - Botones con efectos hover:
+    ```css
+    button {
+      background: #646cff;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background: #535bf2;
+    }
+    ```
+  - Imágenes con object-fit para mantener proporciones:
+    ```css
+    .expositor-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    ```
   - Espaciado y tipografía consistentes 
